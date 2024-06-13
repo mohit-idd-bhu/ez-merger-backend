@@ -15,6 +15,7 @@ exports.verifyToken = async (req,res,next)=>{
         next();
     }
     catch(err){
-        res.status(500).json({error:"Internal Server Error"});
+        console.log(err);
+        return res.status(500).json({error:"Internal Server Error"});
     }
 } 
