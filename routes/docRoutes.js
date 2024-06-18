@@ -53,7 +53,7 @@ router.post('/create',verifyToken,async (req,res)=>{
 router.put('/update/:id',verifyToken,async (req,res)=>{
     try{
         const documentID = req.params.id;
-        const {content} = req.body;
+        const {title, content} = req.body;
         const userEmail = req.user.email;
         const document = await getDocument(documentID);
         if(!document){
@@ -62,6 +62,7 @@ router.put('/update/:id',verifyToken,async (req,res)=>{
         if(!document.collaborators.includes(userEmail)){
             document.collaborators.push(userEmail);
         }
+        document.title=title;
         document.content=content;
         await Document.findOneAndUpdate({id:documentID},document);
         res.status(200).json({message:"Document Updated Succesfully"});
