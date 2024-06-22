@@ -29,7 +29,6 @@ io.on('connection',(socket)=>{
 
     socket.on('join-document',(documentId)=>{
         socket.join(documentId);
-        console.log(`joined document ${documentId}`);
     });
 
     socket.on('update',(update)=>{
@@ -39,7 +38,6 @@ io.on('connection',(socket)=>{
 
     socket.on('leave-document',(documentId)=>{
         socket.leave(documentId);
-        console.log(`User ${socket.id} left room ${documentId}`);
     });
 
     socket.on('disconnect',()=>{
